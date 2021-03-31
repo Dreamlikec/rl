@@ -4,8 +4,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/DQN_Improvement" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/04_C51" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/05_REINFORCE" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/06_PPO" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
