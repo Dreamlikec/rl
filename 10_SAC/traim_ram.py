@@ -1,7 +1,7 @@
 import gym
 import random
 import numpy as np
-from agent import Agent
+from agent import SAC_Agent
 from config import *
 
 
@@ -39,16 +39,16 @@ def train(env, agent, n_episode, max_t):
 
 if __name__ == "__main__":
     env = gym.make(RAM_ENV_NAME)
-    agent = Agent(env=env,
-                  device=DEVICE,
-                  N=N,
-                  lr=LEARNING_RATE,
-                  alpha=ALPHA,
-                  std=STD,
-                  update_frequency=UPDATE_FREQUENCY,
-                  tau=TAU,
-                  buffer_size=BUFFER_SIZE,
-                  batch_size=BATCH_SIZE,
-                  log_in_V_loss=LOG_IN_V,
-                  log_in_pi_loss=LOG_IN_PI)
+    agent = SAC_Agent(env=env,
+                      device=DEVICE,
+                      N=N,
+                      lr=LEARNING_RATE,
+                      alpha=ALPHA,
+                      std=STD,
+                      update_frequency=UPDATE_FREQUENCY,
+                      tau=TAU,
+                      buffer_size=BUFFER_SIZE,
+                      batch_size=BATCH_SIZE,
+                      log_in_V_loss=LOG_IN_V,
+                      log_in_pi_loss=LOG_IN_PI)
     train(env, agent, RAM_NUM_EPISODE, MAX_T)

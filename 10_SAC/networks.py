@@ -37,12 +37,11 @@ class Actor(nn.Module):
         self.reset_parameters()
 
     def forward(self, states):
-        x = states
         x = F.relu(self.fc1(states))
         x = F.relu(self.fc2(x))
         means = self.fc3(x)
         log_std = torch.tanh(self.fc4(x))
-        return means, log_std
+        return means, self.std * log_std
 
     def reset_parameters(self):
         self.fc1.weight.data.uniform_(*hidden_unit(self.fc1))
@@ -61,12 +60,13 @@ class Critic(nn.Module):
         self.fc1 = nn.Linear(state_size, hidden[0])
         self.fc2 = nn.Linear(hidden[0], hidden[1])
         self.fc3 = nn.Linear(hidden[1], 1)
+        self.reset_parameters()
 
     def forward(self, states):
         x = states
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
-        x = F.relu(self.fc3(x))
+        x = self.fc3(x)
         return x
 
     def reset_parameters(self):
