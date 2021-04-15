@@ -27,33 +27,6 @@ class Q_Network(nn.Module):
             return x
 
 
-# class Visual_Q_Networks(nn.Module):
-#     def __init__(self, num_frame, num_actions, duel=False):
-#         super(Visual_Q_Networks, self).__init__()
-#         self.conv1 = nn.Conv2d(in_channels=num_frame, out_channels=16, kernel_size=8, stride=4, padding=2)
-#         self.conv2 = nn.Conv2d(in_channels=16, out_channels=32, kernel_size=4, stride=2)
-#         self.conv3 = nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, stride=1)
-#         self.fc1 = nn.Linear(7 * 7 * 64, 512)
-#         self.fc2 = nn.Linear(512, num_actions)
-#         self.duel = duel
-#         if self.duel:
-#             self.fc3 = nn.Linear(512, 1)
-#
-#     def forward(self, image):
-#         x = F.relu(self.conv1(image))
-#         x = F.relu(self.conv2(x))
-#         x = F.relu(self.conv3(x))
-#         x = x.view(-1, 7 * 7 * 64)
-#         x = F.relu(self.fc1(x))
-#         if self.duel:
-#             x1 = self.fc2(x)
-#             x1 = x1 - torch.max(x1, dim=1, keepdim=True)[0]
-#             x2 = self.fc3(x)
-#             return x1 + x2
-#         else:
-#             x = self.fc2(x)
-#             return x
-
 class Visual_Q_Networks(nn.Module):
     '''
     The input of this network should have shape (num_frame, 80, 80)
