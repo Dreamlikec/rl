@@ -10,7 +10,7 @@ RAM_ENV_NAME = 'LunarLanderContinuous-v2'
 #Agent parameters
 N = 5
 LEARNING_RATE = 0.001
-ALPHA = 0.1
+ALPHA = 0.01
 SCALE = 1
 STD = 3
 UPDATE_FREQUENCY = 2

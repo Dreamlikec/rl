@@ -29,13 +29,13 @@ class SAC_Agent(object):
         self.pi = Actor(self.state_size, self.action_size, std).to(device)
         self.V_local = Critic(self.state_size).to(device)
         self.V_target = Critic(self.state_size).to(device)
-        self.soft_update(self.V_local, self.V_target, 1)
+
 
         self.Q1_optimizer = optim.Adam(self.Q1.parameters(), lr=lr)
         self.Q2_optimizer = optim.Adam(self.Q2.parameters(), lr=lr)
         self.pi_optimizer = optim.Adam(self.pi.parameters(), lr=lr)
         self.V_optimizer = optim.Adam(self.V_local.parameters(), lr=lr)
-
+        self.soft_update(self.V_local, self.V_target, 1)
         self.memory = ReplayBuffer(buffer_size)
 
     def soft_update(self, local_model, target_model, tau):
@@ -56,7 +56,7 @@ class SAC_Agent(object):
         distribution = Normal(means, stds)
         actions = distribution.rsample()
         news_actions = torch.tanh(actions)
-        log_probs = distribution.log_prob(actions.detach()).sum(dim =1 ,keepdims=True)
+        log_probs = distribution.log_prob(actions.detach()).sum(dim=1, keepdims=True)
         return news_actions, log_probs
 
     def learn(self):
